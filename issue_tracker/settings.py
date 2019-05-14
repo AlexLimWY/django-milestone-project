@@ -26,7 +26,7 @@ SECRET_KEY = 'ka75z^bdx@xzlge0((%#nzy_0mu1*^!rw!^uu(hm8s^tmv&2ok'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django-milestone-project-alexlimwy.c9users.io']
+ALLOWED_HOSTS = ['django-milestone-project-alexlimwy.c9users.io', 'alwy-django-assignment.herokuapp.com']
 
 
 # Application definition
