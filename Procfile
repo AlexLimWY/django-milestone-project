@@ -1,1 +1,1 @@
-web: gunicorn issue_tracker.wsgi:application
+web: gunicorn online_bookstore.wsgi:application
