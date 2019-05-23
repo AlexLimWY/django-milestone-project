@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import dj_database_url
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,7 +27,8 @@ SECRET_KEY = 'q%ruj%!hx-m532t8p&mn1fm0!e_($q%lz==7r&ejt)xma8yfsp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django-milestone-project-alexlimwy.c9users.io', 'https://alwy-django-assignment.herokuapp.com/']
+# 
+ALLOWED_HOSTS = ['alwy-django-assignment.herokuapp.com', 'django-milestone-project-alexlimwy.c9users.io']
 
 
 # Application definition
@@ -128,3 +130,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+if 'test' in sys.argv:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase'
+    }
