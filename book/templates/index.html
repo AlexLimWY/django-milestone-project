@@ -1,0 +1,78 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{%block title%}
+Online Bookstore
+{%endblock%}
+
+{%block content%}
+  <section class="container-fluid mt-5">
+    <h1>Books</h1>
+    <div class="row">
+    {% for each_book in all_books %}    
+      <div class="card container col-sm-4">
+        <div class="card-body">
+          <img class="card-img-top" src="{% get_media_prefix %}{{each_book.image}}">
+          <h4 class="card-title mt-2"><strong>{{each_book.title}}</strong></h4>
+          <p>by <strong>{{each_book.author.author_name}}</strong></p>
+          <h4 class="mt-2">${{each_book.price}}</h4>
+
+          <!-- Button to Open the Modal -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#b-{{each_book.id}}">
+          More Information
+          </button>
+
+          <!-- The Modal -->
+          <div class="modal" id="b-{{each_book.id}}">
+            <div class="modal-dialog">
+              <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">{{each_book.title}}</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                  <img class="card-img-top" src="{% get_media_prefix %}{{each_book.image}}">
+                  <p>
+                    <strong>Author: </strong>{{each_book.author.author_name}}
+                  </p>
+                  <p>
+                    <strong>Genre: </strong>{{each_book.genre.genre_name}}
+                  </p>
+                  <p>
+                    <strong>Print Length: </strong>{{each_book.print_length}} pages
+                  </p>
+                  <p>
+                    <strong>ISBN: </strong>{{each_book.ISBN}}
+                  </p>
+                  <p>
+                    <strong>Publication Date: </strong>{{each_book.publication_date}}
+                  </p>                  
+                  <br>
+                  <h5>Blurb: </h5>
+                  <p>
+                    {{each_book.blurb}}
+                  </p>
+                  <p>
+                    <strong>Price: </strong>${{each_book.price}}
+                  </p>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+    {% endfor %}  
+    </div>
+  </section> 
+<br>  
+{%endblock%}  
