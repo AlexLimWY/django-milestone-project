@@ -29,6 +29,9 @@
           <li class="{% if url_name == 'register_link' %}active{% endif %}">
             <a class="nav-link" href="{% url 'register_link' %}">Register</a>
           </li>
+          <li class="{% if url_name == 'login_link' %}active{% endif %}">
+            <a class="nav-link" href="{% url 'login_link' %}">Log In</a>
+          </li>          
           {% endwith %}
         </ul>
       </div>

@@ -6,6 +6,15 @@ Online Bookstore
 {%endblock%}
 
 {%block content%}
+    {% if messages %}
+    <div>
+        <ul>
+            {% for m in messages %}
+            <li>{{m}}</li>
+            {% endfor %}
+        </ul>
+    </div>    
+    {% endif %}
   <section class="container-fluid mt-5">
     <h1>Books</h1>
     <div class="row">

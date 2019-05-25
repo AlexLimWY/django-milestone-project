@@ -1,4 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
+from django.contrib import auth, messages
+from django.contrib.auth.decorators import login_required
+from authentication.forms import LoginForm, RegisterUserForm
 from .models import Book
 
 # Create your views here.

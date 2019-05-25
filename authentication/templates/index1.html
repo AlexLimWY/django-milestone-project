@@ -1,0 +1,145 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>{%block title%}{%endblock%}</title>
+  </head>
+  <body>
+      <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+          Online Bookstore
+        </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+            <li>
+                    {% if user.is_authenticated %}
+                    <div style="color:white">Welcome, {{ user.username }}
+                    <a style="color:white" href="{% url 'logout_link' %}" class='ml-4 mr-4'>Log Out</a>
+                    </div>
+                    {% else %}
+                    <div style="color:white" class='ml-4 mr-4'>Please Log In</div>
+                    {% endif %}
+            </li>    
+          {% with url_name=request.resolver_match.url_name %}
+          <li class="{% if url_name == 'index1' %}active{% endif %}">
+            <a class="nav-link" href="{% url 'index1' %}">Home</a>
+          </li>
+          {% endwith %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+    {% if messages %}
+    <div class='container'>
+        <ul>
+            {% for m in messages %}
+            <li>{{m}}</li>
+            {% endfor %}
+        </ul>
+    </div>    
+    {% endif %}
+<div class='container'>    
+    <ul>
+        {% if not user.is_authenticated %}
+        <li><a href='{% url 'login_link' %}'>Log In</a></li>
+        <li><a href='{% url 'register_link' %}'>Register Account</a></li>
+        {% endif %}
+        
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'logout_link' %}">Log Out</a></li>
+        {% endif %}
+    </ul>
+</div>    
+<div class='container'>
+    <section class="container-fluid mt-5">
+        <h1>Books</h1>
+        <div class="row">
+            {% for each_book in all_books %}
+            <div class="card container col-sm-4">
+                <div class="card-body">
+                    <img class="card-img-top" src="{% get_media_prefix %}{{each_book.image}}">
+                    <h4 class="card-title mt-2"><strong>{{each_book.title}}</strong></h4>
+                    <p>by <strong>{{each_book.author.author_name}}</strong></p>
+                    <h4 class="mt-2">${{each_book.price}}</h4>
+
+                    <!-- Button to Open the Modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#b-{{each_book.id}}">
+          More Information
+          </button>
+
+                    <!-- The Modal -->
+                    <div class="modal" id="b-{{each_book.id}}">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">{{each_book.title}}</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <img class="card-img-top" src="{% get_media_prefix %}{{each_book.image}}">
+                                    <p>
+                                        <strong>Author: </strong>{{each_book.author.author_name}}
+                                    </p>
+                                    <p>
+                                        <strong>Genre: </strong>{{each_book.genre.genre_name}}
+                                    </p>
+                                    <p>
+                                        <strong>Print Length: </strong>{{each_book.print_length}} pages
+                                    </p>
+                                    <p>
+                                        <strong>ISBN: </strong>{{each_book.ISBN}}
+                                    </p>
+                                    <p>
+                                        <strong>Publication Date: </strong>{{each_book.publication_date}}
+                                    </p>
+                                    <br>
+                                    <h5>Blurb: </h5>
+                                    <p>
+                                        {{each_book.blurb}}
+                                    </p>
+                                    <p>
+                                        <strong>Price: </strong>${{each_book.price}}
+                                    </p>
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <br>
+
+</div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    {%block js_includes %}
+    {%endblock %}
+  </body>
+</html>
