@@ -23,11 +23,13 @@ from django.conf.urls.static import static
 # from authentication import urls as authentication_urls
 from book import urls as book_urls
 from authentication import urls as authentication_urls
+from shopping_cart import urls as shopping_cart_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^authentication/', include(authentication_urls)),
+    url(r'^authentication/', include(authentication_urls.urlpatterns)),
     url(r'^$', include(book_urls.urlpatterns)),
+    url(r'^shopping_cart/', include(shopping_cart_urls.urlpatterns))
 ]
 
 if settings.DEBUG: 

@@ -3,12 +3,14 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from .forms import LoginForm, RegisterUserForm
 from book.models import Book
+from shopping_cart.forms import AddToCartForm
 
 # Create your views here.
 
 def index1(request):
     books = Book.objects.all()
-    return render(request, 'index1.html', {'all_books':books})
+    addtocart_form = AddToCartForm()
+    return render(request, 'index1.html', {'all_books':books, 'form':addtocart_form})
 
 # def index(request):
 #     books = Book.objects.all()

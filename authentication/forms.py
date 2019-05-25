@@ -25,7 +25,7 @@ class RegisterUserForm(UserCreationForm):
         
         # see if any current users is using that email
         if User.objects.filter(email=requested_email).count() > 0:
-            raise forms.ValidationError("This email is already in use.")
+            raise forms.ValidationError("This email address is already in use.")
             
         return requested_email
             
