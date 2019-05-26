@@ -2,7 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from book.models import Book
 from authentication.views import index1
 from .forms import AddToCartForm
+from django.conf import settings
 # Create your views here.
+
 
 def add_to_cart(request, id):
     book = get_object_or_404(Book, pk=id)
@@ -17,8 +19,7 @@ def add_to_cart(request, id):
               'id': id,
               'title': book.title,
               'author_name': book.author.author_name,
-              'price': book.price,
-            #   'image': book.image
+              'price': str(book.price),
             },
             'quantity': int(qty.value())
         }
