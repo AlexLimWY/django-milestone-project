@@ -12,7 +12,7 @@ class Order(models.Model):
     address =models.CharField(max_length=255, blank=False)
     
     def __str__(self):
-        return "Order - " + str(self.id)
+        return "Order - #" + str(self.id)
     
 class OrderLineItem(models.Model):
     
@@ -20,4 +20,4 @@ class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name = 'order_line_items')
     quantity = models.IntegerField()
     def __str__(self):
-        return "Order {} - Product {}".format(self.order_id, self.post_id)
+        return "Order #{} - Product #{}".format(self.order_id, self.book_id)
