@@ -5,7 +5,7 @@ from django.utils import timezone
 from book.models import Book
 from .models import Order, OrderLineItem
 from django.core.mail import send_mail
-
+from authentication.forms import RegisterUserForm
 import stripe
 
 # Create your views here.
@@ -29,7 +29,7 @@ def checkout(request):
         cart = request.session.get('cart', {})
         total_cost = 0
         for cart_item in cart.values():
-            total_cost = cart_item['qty'] * cart_item['product']['price']
+            total_cost = cart_item['quantity'] * float(cart_item['product']['price'])
            
         order_form = OrderForm(request.POST)
         payment_form = PaymentForm(request.POST) 
@@ -47,7 +47,7 @@ def checkout(request):
                 order_line_item = OrderLineItem(
                     book = book,
                     order = order,
-                    quantity = cart_item['qty']
+                    quantity = cart_item['quantity']
                 )
                 order_line_item.save()
                 
@@ -64,16 +64,16 @@ def checkout(request):
                 
             if customer.paid:
                 # request.session['cart'] = {}
-                subject = "Your invoice for your order #" + str(order.id)
-                message = "Your order has been processed and will be shipped to you shortly"
+                subject = "Your Invoice for Your Order #" + str(order.id)
+                message = "Your order has been processed and will be shipped to you shortly."
                 email_from = settings.EMAIL_HOST_USER
              
                 send_to = ['mannagoodies@gmail.com']
                 send_mail(subject, message, email_from, send_to)
-                return  HttpResponse("Payment successful")
+                return  HttpResponse("Payment Successful")
                 
             else:
-                return HttpResponse("Payment failed")
+                return HttpResponse("Payment Failed")
             
         else:
             print(order_form.is_valid())
