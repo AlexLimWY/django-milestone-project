@@ -9,5 +9,9 @@ from .models import Book
 #     return HttpResponse("Hello Earth")
     
 def index(request):
-    books = Book.objects.all()
+    if 'search_terms' in request.GET:
+        search_terms = request.GET.get('search_terms')
+        books = Book.objects.filter(title__icontains=search_terms)
+    else:
+        books = Book.objects.all()
     return render(request, 'index.html', {'all_books':books})

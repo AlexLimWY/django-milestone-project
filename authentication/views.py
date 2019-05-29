@@ -8,8 +8,12 @@ from shopping_cart.forms import AddToCartForm
 # Create your views here.
 
 def index1(request):
-    books = Book.objects.all()
     addtocart_form = AddToCartForm()
+    if 'search_terms' in request.GET:
+        search_terms = request.GET.get('search_terms')
+        books = Book.objects.filter(title__icontains=search_terms)
+    else:
+        books = Book.objects.all()    
     return render(request, 'index1.html', {'all_books':books, 'form':addtocart_form})
 
 # def index(request):

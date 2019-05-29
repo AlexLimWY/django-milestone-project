@@ -53,6 +53,7 @@
         </ul>
     </div>    
     {% endif %}
+ 
 <div class='container'>    
     <ul>
         {% if not user.is_authenticated %}
@@ -64,6 +65,12 @@
         <li><a href="{% url 'logout_link' %}">Log Out</a></li>
         {% endif %}
     </ul>
+</div> 
+<div class='container'>
+    <form method="GET">
+        <input type='text' placeholder="Search for Books by Title..." name="search_terms" class="container mt-4 mb-2">
+        <input type="submit" value="Search">
+    </form> 
 </div>    
 <div class='container'>
     <section class="container-fluid mt-5">
