@@ -1,8 +1,8 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
-from .forms import LoginForm, RegisterUserForm
-from book.models import Book
+from .forms import LoginForm, RegisterUserForm, BookForm, AuthorForm, GenreForm
+from book.models import Book, Author, Genre
 from shopping_cart.forms import AddToCartForm
 
 # Create your views here.
@@ -15,10 +15,113 @@ def index1(request):
     else:
         books = Book.objects.all()    
     return render(request, 'index1.html', {'all_books':books, 'form':addtocart_form})
+    
+def edit(request, id):
+    book = get_object_or_404(Book, pk=id)
+    if request.method == "POST":
+        submitted_form = BookForm(request.POST, instance=book)
+        if submitted_form.is_valid():
+            submitted_form.save()
+            return redirect(index1)
+    else:    
+    
+        form = BookForm(instance=book)
+        return render(request, 'edit.html', {
+            'item_form':form
+    }) 
 
-# def index(request):
-#     books = Book.objects.all()
-#     return render(request, 'index.html', {'all_books':books})  
+def edit_genre(request, id):
+    genre = get_object_or_404(Genre, pk=id)
+    if request.method == "POST":
+        submitted_form = GenreForm(request.POST, instance=genre)
+        if submitted_form.is_valid():
+            submitted_form.save()
+            return redirect(edit)
+    else:    
+    
+        form = GenreForm(instance=genre)
+        return render(request, 'edit_genre.html', {
+            'item_form':form
+    }) 
+
+def edit_author(request, id):
+    author = get_object_or_404(Author, pk=id)
+    if request.method == "POST":
+        submitted_form = AuthorForm(request.POST, instance=author)
+        if submitted_form.is_valid():
+            submitted_form.save()
+            return redirect(edit_genre)
+        else:
+            return render(request, "edit_author.html", {
+                'form':submitted_form
+            })            
+    else:    
+    
+        editauthor_form = AuthorForm(instance=author)
+        return render(request, 'edit_author.html', {
+            'form':editauthor_form
+    })    
+
+def delete(request, id):
+    book = get_object_or_404(Book, pk=id)
+    if request.method == "POST":
+        book.delete()
+        return redirect(index1)
+    else:
+        return render(request, 'confirm_delete.html', {
+            'each_book':book
+        })
+        
+def add(request):
+    if request.method == "POST":
+        submitted_form = BookForm(request.POST, request.FILES)
+        if submitted_form.is_valid():
+            submitted_form.save()
+            return redirect(index1)
+        else:
+            return render(request, "add.html", {
+                'form':submitted_form
+            })
+        
+    else:
+        addbook_form = BookForm()
+        return render(request, "add.html", {
+            'form' : addbook_form
+        })
+
+def add_genre(request):
+    if request.method == "POST":
+        submitted_form = GenreForm(request.POST, request.FILES)
+        if submitted_form.is_valid():
+            submitted_form.save()
+            return redirect(add)
+        else:
+            return render(request, "add_genre.html", {
+                'form':submitted_form
+            })
+        
+    else:
+        addgenre_form = GenreForm()
+        return render(request, "add_genre.html", {
+            'form' : addgenre_form
+        })
+
+def add_author(request):
+    if request.method == "POST":
+        submitted_form = AuthorForm(request.POST, request.FILES)
+        if submitted_form.is_valid():
+            submitted_form.save()
+            return redirect(add_genre)
+        else:
+            return render(request, "add_author.html", {
+                'form':submitted_form
+            })
+        
+    else:
+        addauthor_form = AuthorForm()
+        return render(request, "add_author.html", {
+            'form' : addauthor_form
+        })
     
 def account_created(request):
     return render(request, 'account_created.html')

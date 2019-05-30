@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from book.models import Author, Genre, Book
 
 class LoginForm(forms.Form):
     username = forms.CharField(required=True)
@@ -36,4 +37,27 @@ class RegisterUserForm(UserCreationForm):
         if (password1 != password2):
             raise forms.ValidationError("Password and Confirmation Password do not match.")
             
-        return password2    
+        return password2   
+
+class AuthorForm(forms.ModelForm):
+    class Meta:
+        model = Author
+        fields = ['author_name']
+        
+class GenreForm(forms.ModelForm):
+    class Meta:
+        model = Genre
+        fields = ['genre_name']
+        
+class BookForm(forms.ModelForm):
+    
+    class Meta:
+        model = Book
+        fields = ('author', 'title', 'genre', 'print_length', 'ISBN', 'price', 'blurb', 'image')
+        
+    def clean_title(self):
+        title = self.cleaned_data.get('title')
+        if Book.objects.filter(title=title).count() > 0:
+            raise forms.ValidationError("Duplicated title")
+        
+        return title           

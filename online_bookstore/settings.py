@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'online_bookstore.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.parse('postgres://nolqyozmiwuucy:06e0ffa692b4df30c9d28c4f1b2b1d0217d86b69644d37d1934bb7cffaa15957@ec2-54-163-226-238.compute-1.amazonaws.com:5432/dcdpa72nvjjhcj')
+    'default': dj_database_url.parse('postgres://jwfaotveqbqxzn:18b64be5c35a972a031fd0c4ba143a0dcc77e1916ab92c7c4b71f99bbdfff4a0@ec2-23-21-156-171.compute-1.amazonaws.com:5432/d4ueqa4qqqr34e')
                 # {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
