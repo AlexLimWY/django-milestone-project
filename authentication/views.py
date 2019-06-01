@@ -25,9 +25,9 @@ def edit(request, id):
             return redirect(index1)
     else:    
     
-        form = BookForm(instance=book)
+        edit_form = BookForm(instance=book)
         return render(request, 'edit.html', {
-            'item_form':form
+            'form':edit_form
     }) 
 
 def edit_genre(request, id):
@@ -39,9 +39,9 @@ def edit_genre(request, id):
             return redirect(edit)
     else:    
     
-        form = GenreForm(instance=genre)
+        editgenre_form = GenreForm(instance=genre)
         return render(request, 'edit_genre.html', {
-            'item_form':form
+            'form':editgenre_form
     }) 
 
 def edit_author(request, id):
@@ -51,10 +51,6 @@ def edit_author(request, id):
         if submitted_form.is_valid():
             submitted_form.save()
             return redirect(edit_genre)
-        else:
-            return render(request, "edit_author.html", {
-                'form':submitted_form
-            })            
     else:    
     
         editauthor_form = AuthorForm(instance=author)
