@@ -45,4 +45,4 @@ def remove_from_cart(request, id):
     
 def remove_all_from_cart(request):
     request.session['cart'] = {}
-    return redirect(index1)
+    return redirect(view_cart)

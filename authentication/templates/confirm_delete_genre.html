@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>{%block title%}{%endblock%}</title>
+    <title>Delete Author</title>
   </head>
   <body>
       <!-- Navigation -->
@@ -76,26 +76,20 @@
         </ul>
     </div>    
     {% endif %}
-<div class='container'>
-<h2 class='mt-2 mb-2 ml-2'>Items in Your Shopping Cart</h2>
-
-<ul>
-    {% for key,value in cart.items %}
-    <li>{{value.product.title}}
-    by {{value.product.author_name}}
-    <br>Price: ${{value.product.price}}
-    <br>Quantity: {{value.quantity}}
-    <br><a href={% url 'remove_from_cart_link' id=value.product.id %}>Remove from Cart</a></li>
-    <br>
-    {% endfor %}
-</ul>
-<div><a href="{% url 'remove_all_from_cart_link' %}">Remove All Items From My Shopping Cart</a></div>
-<br>
-          <a href={% url 'checkout_link' %} class="btn btn-primary" role='button'>
-          Check Out
-          </a>
-<br>          
-</div>
+    
+    <div class='container'> 
+    <p>Are You Sure You Want to Delete <strong>{{each_genre.genre_name}}</strong>?</p>
+        <div class='row'>
+            <form method="POST" class='col-sm-1'>
+                {% csrf_token %}
+                <input type="submit" value="Yes">
+            </form>
+            <div class='col-sm-1'></div>
+            <form class='col-sm-1'>
+                 <button type="submit" formaction="{% url 'manage_genres' %}">No</button>
+            </form>
+        </div>
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

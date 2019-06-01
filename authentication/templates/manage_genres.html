@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>{%block title%}{%endblock%}</title>
+    <title>Manage Genres</title>
   </head>
   <body>
       <!-- Navigation -->
@@ -76,25 +76,46 @@
         </ul>
     </div>    
     {% endif %}
+ 
+<div class='container'>    
+    <ul>
+        {% if not user.is_authenticated %}
+        <li><a href='{% url 'login_link' %}'>Log In</a></li>
+        <li><a href='{% url 'register_link' %}'>Register Account</a></li>
+        {% endif %}
+        
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'logout_link' %}">Log Out</a></li>
+        {% endif %}
+    </ul>
+</div> 
 <div class='container'>
-<h2 class='mt-2 mb-2 ml-2'>Items in Your Shopping Cart</h2>
-
-<ul>
-    {% for key,value in cart.items %}
-    <li>{{value.product.title}}
-    by {{value.product.author_name}}
-    <br>Price: ${{value.product.price}}
-    <br>Quantity: {{value.quantity}}
-    <br><a href={% url 'remove_from_cart_link' id=value.product.id %}>Remove from Cart</a></li>
+    <form method="GET">
+        <input type='text' placeholder="Search for Books by Title..." name="search_terms" class="container mt-3 mb-2">
+        <input type="submit" value="Search">
+    </form> 
+</div>    
+<div class='container'>
+    <section class="container-fluid mt-5">
+        <h1>Genres</h1>
+        <div class="row">
+            <ol>
+            {% for each_genre in all_genres %}
+            <li>{{ each_genre.genre_name }} 
+            <a href="edit_genre/{{each_genre.id}}">Edit</a>
+            <a href="delete_genre/{{each_genre.id}}">Delete</a>
+            </li>
+            {% endfor %}
+            </ol>
+        </div>
+        <div>
+            <form>
+                 <button type="submit" formaction="{% url 'add_genre' %}">Add Genre</button>
+            </form>
+        </div>        
+    </section>
     <br>
-    {% endfor %}
-</ul>
-<div><a href="{% url 'remove_all_from_cart_link' %}">Remove All Items From My Shopping Cart</a></div>
-<br>
-          <a href={% url 'checkout_link' %} class="btn btn-primary" role='button'>
-          Check Out
-          </a>
-<br>          
+
 </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

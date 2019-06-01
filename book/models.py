@@ -12,7 +12,7 @@ class Genre(models.Model):
     
     def __str__(self):
         return self.genre_name
-
+        
 class Book(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='authors', null=True)
     title = models.CharField(blank=False, max_length=255)
@@ -27,4 +27,4 @@ class Book(models.Model):
     def __str__(self):
         return self.title + " (" + self.author.author_name + ") "
         
-   
+    

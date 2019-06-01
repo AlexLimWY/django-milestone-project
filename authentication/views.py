@@ -15,6 +15,14 @@ def index1(request):
     else:
         books = Book.objects.all()    
     return render(request, 'index1.html', {'all_books':books, 'form':addtocart_form})
+
+def manage_authors(request):
+    authors = Author.objects.all()
+    return render(request, 'manage_authors.html', {'all_authors': authors})
+    
+def manage_genres(request):
+    genres = Genre.objects.all()
+    return render(request, 'manage_genres.html', {'all_genres': genres})    
     
 def edit(request, id):
     book = get_object_or_404(Book, pk=id)
@@ -36,13 +44,23 @@ def edit_genre(request, id):
         submitted_form = GenreForm(request.POST, instance=genre)
         if submitted_form.is_valid():
             submitted_form.save()
-            return redirect(edit)
+            return redirect(manage_genres)
     else:    
     
         editgenre_form = GenreForm(instance=genre)
         return render(request, 'edit_genre.html', {
             'form':editgenre_form
     }) 
+    
+def delete_genre(request, id):
+    genre = get_object_or_404(Genre, pk=id)
+    if request.method == "POST":
+        genre.delete()
+        return redirect(manage_genres)
+    else:
+        return render(request, 'confirm_delete_genre.html', {
+            'each_genre':genre
+        })      
 
 def edit_author(request, id):
     author = get_object_or_404(Author, pk=id)
@@ -50,13 +68,23 @@ def edit_author(request, id):
         submitted_form = AuthorForm(request.POST, instance=author)
         if submitted_form.is_valid():
             submitted_form.save()
-            return redirect(edit_genre)
+            return redirect(manage_authors)
     else:    
     
         editauthor_form = AuthorForm(instance=author)
         return render(request, 'edit_author.html', {
             'form':editauthor_form
-    })    
+    }) 
+
+def delete_author(request, id):
+    author = get_object_or_404(Author, pk=id)
+    if request.method == "POST":
+        author.delete()
+        return redirect(manage_authors)
+    else:
+        return render(request, 'confirm_delete_author.html', {
+            'each_author':author
+        })    
 
 def delete(request, id):
     book = get_object_or_404(Book, pk=id)
@@ -90,7 +118,7 @@ def add_genre(request):
         submitted_form = GenreForm(request.POST, request.FILES)
         if submitted_form.is_valid():
             submitted_form.save()
-            return redirect(add)
+            return redirect(manage_genres)
         else:
             return render(request, "add_genre.html", {
                 'form':submitted_form
@@ -107,7 +135,7 @@ def add_author(request):
         submitted_form = AuthorForm(request.POST, request.FILES)
         if submitted_form.is_valid():
             submitted_form.save()
-            return redirect(add_genre)
+            return redirect(manage_authors)
         else:
             return render(request, "add_author.html", {
                 'form':submitted_form
