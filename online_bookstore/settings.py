@@ -136,17 +136,17 @@ AWS_S3_OBJECT_PARAMETERS = {
 
 AWS_STORAGE_BUCKET_NAME = 'alex-ecommerce'
 AWS_S3_REGION_NAME = 'ap-southeast-1'
-# AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
-# AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
 
-ACCESS_KEY = "AKIAYKLFSESBD3QU3E52"
-SECRET_KEY = "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"
+# ACCESS_KEY = "AKIAYKLFSESBD3QU3E52"
+# SECRET_KEY = "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"
 
-client = boto3.client(
-    's3',
-    aws_access_key_id=ACCESS_KEY,
-    aws_secret_access_key=SECRET_KEY,
-)
+# client = boto3.client(
+#     's3',
+#     aws_access_key_id=ACCESS_KEY,
+#     aws_secret_access_key=SECRET_KEY,
+# )
 
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
