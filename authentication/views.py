@@ -31,6 +31,11 @@ def edit(request, id):
         if submitted_form.is_valid():
             submitted_form.save()
             return redirect(index1)
+        else:
+            return render(request, "edit.html", {
+                'form':submitted_form
+            })
+    
     else:    
     
         edit_form = BookForm(instance=book)
