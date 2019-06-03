@@ -12,8 +12,10 @@ The information to be presented to the user and the database relations is based 
 ### Existing Features
 -There is a modal button for each book, called ‘More Information’ so that the user can click on it to open up a pop-up box to show more information about the book.
 - There is a search bar at the top of every page for the user to key in a book title which he or she wants to find. The user will be able to see the search results after keying in and clicking on the ‘Search’ button below the search bar.
+
 ### Features Left to Implement
-- Allowing users to upload image(s) of their respective book(s).
+- Allowing users to upload samples/excerpts of their books.
+
 ## Technologies Used
 1. HTML
 - For structuring the website, e.g. adding content to the website.
