@@ -7,7 +7,7 @@ class PostForm(forms.ModelForm):
     
     class Meta:
         model = Book
-        fields = ('author', 'title', 'genre', 'print_length', 'ISBN', 'price', 'blurb', 'publication_date', 'image')
+        fields = ('author', 'title', 'genre', 'print_length', 'ISBN', 'price', 'blurb', 'publication_date', 'photo')
     
     def clean_blurb(self):
         blurb = self.cleaned_data.get('blurb')

@@ -25,8 +25,8 @@ Online Bookstore
     {% for each_book in all_books %}    
       <div class="card container col-sm-4">
         <div class="card-body">
-          <!--<img class="img-fluid" src="{{ each_book.image.cdn_url }}-/crop/600x600/center/-/quality/lightest/" alt=""></div>-->
-          <img class="card-img-top" src="{% get_media_prefix %}{{each_book.image}}">
+          <img class="card-img-top" src="{{ each_book.photo.cdn_url }}">
+          <!--<img class="card-img-top" src="{% get_media_prefix %}{{each_book.image}}">-->
           <h4 class="card-title mt-2"><strong>{{each_book.title}}</strong></h4>
           <p>by <strong>{{each_book.author.author_name}}</strong></p>
           <h4 class="mt-2">${{each_book.price}}</h4>
@@ -49,7 +49,8 @@ Online Bookstore
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                  <img class="card-img-top" src="{% get_media_prefix %}{{each_book.image}}">
+                  <img class="card-img-top" src="{{ each_book.photo.cdn_url }}">
+                  <!--<img class="card-img-top" src="{% get_media_prefix %}{{each_book.image}}">-->
                   <p>
                     <strong>Author: </strong>{{each_book.author.author_name}}
                   </p>

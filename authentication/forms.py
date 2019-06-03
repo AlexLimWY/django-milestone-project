@@ -55,7 +55,7 @@ class BookForm(forms.ModelForm):
     
     class Meta:
         model = Book
-        fields = ('author', 'title', 'genre', 'print_length', 'ISBN', 'price', 'blurb', 'image')
+        fields = ('author', 'title', 'genre', 'print_length', 'ISBN', 'price', 'blurb', 'photo')
         
     def clean_title(self):
         title = self.cleaned_data.get('title')

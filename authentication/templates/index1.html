@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>Online Bookstore</title>
+    {{ form.media }}
   </head>
   <body>
       <!-- Navigation -->
@@ -102,7 +103,8 @@
             {% for each_book in all_books %}
             <div class="card container col-sm-4">
                 <div class="card-body">
-                    <img class="card-img-top" src="{% get_media_prefix %}{{each_book.image}}">
+                    <img class="card-img-top" src="{{ each_book.photo.cdn_url }}">
+                    <!--<img class="card-img-top" src="{% get_media_prefix %}{{each_book.image}}">-->
                     <h4 class="card-title mt-2"><strong>{{each_book.title}}</strong></h4>
                     <p>by <strong>{{each_book.author.author_name}}</strong></p>
                     <h4 class="mt-2">${{each_book.price}}</h4>
@@ -138,7 +140,8 @@
 
                                 <!-- Modal body -->
                                 <div class="modal-body">
-                                    <img class="card-img-top" src="{% get_media_prefix %}{{each_book.image}}">
+                                    <img class="card-img-top" src="{{ each_book.photo.cdn_url }}">
+                                    <!--<img class="card-img-top" src="{% get_media_prefix %}{{each_book.image}}">-->
                                     <p>
                                         <strong>Author: </strong>{{each_book.author.author_name}}
                                     </p>
