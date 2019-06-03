@@ -23,4 +23,32 @@ The information to be presented to the user and the database relations is based 
  - The project uses Bootstrap to create mobile-responsive web pages.
 ## Testing
 Python assertions were used to test the models created. The Python assert statements can be found in the ‘tests.py’ file in the ‘book’ folder of this ‘django-milestone-project’ Cloud9 workspace.
+Where Python assertions were not done, manual tests were done. For example, to test the mobile responsiveness of this website, different screen sizes were used to view the website. For example, a mobile phone screen size was used to test a small view and a desktop computer screen size was used to test a big view. 
+In another example, a user trying to add a book on the website would need to key in information for the blank fields such as ‘Title’ because they are required fields. Submitting the recipe without filling in the blank fields would cause an error message to appear. Successful submission of the recipe will redirect the user to the ‘Home’ page of the website.
+
+## Deployment
+This project was deployed to Heroku.
+A person who wants to run this code locally can clone or download this repository from https://github.com/AlexLimWY/django-milestone-project.git and paste it into their editor terminal.
+
+## Credits
+### Content
+- The text for The Hobbit was taken from [Amazon]( https://www.amazon.com/Hobbit-J-R-R-Tolkien/dp/0345339681/ref=sr_1_5?keywords=the+lord+of+the+rings+the+hobbit&qid=1559528811&s=books&sr=1-5)
+- The text for Ready Player One was taken from [Amazon](https://www.amazon.com/Ready-Player-One-Ernest-Cline/dp/0307887448/ref=sr_1_1?crid=2J1NJU4FS59BW&keywords=ready+player+one&qid=1559528918&s=books&sprefix=ready+player+one%2Cstripbooks-intl-ship%2C412&sr=1-1)
+- The text for Redemption was taken from [Amazon](https://www.amazon.com/Redemption-Memory-Man-Book-5-ebook/dp/B07G87BTJQ/ref=tmm_kin_swatch_0?_encoding=UTF8&qid=1559529075&sr=1-1)
+- The text for The Notebook was taken from [Amazon](https://www.amazon.com/Notebook-Nicholas-Sparks/dp/0446676098)
+- The text for The Good Fight was taken from [Amazon]( https://www.amazon.com/Good-Fight-Novel-Danielle-Steel/dp/1101884142/ref=sr_1_3?keywords=the+good+fight&qid=1559530787&s=books&sr=1-3)
+- The text for The Purpose Driven Life: What on Earth Am I Here For? was taken from [Amazon]( https://www.amazon.com/Purpose-Driven-Life-What-Earth/dp/031033750X/ref=sr_1_1?keywords=the+purpose+driven+life&qid=1559530945&s=books&sr=1-1)
+
+### Media
+- The image for The Hobbit was taken from [Amazon]( https://www.amazon.com/Hobbit-J-R-R-Tolkien/dp/0345339681/ref=sr_1_5?keywords=the+lord+of+the+rings+the+hobbit&qid=1559528811&s=books&sr=1-5)
+- The image for Ready Player One was taken from [Amazon](https://www.amazon.com/Ready-Player-One-Ernest-Cline/dp/0307887448/ref=sr_1_1?crid=2J1NJU4FS59BW&keywords=ready+player+one&qid=1559528918&s=books&sprefix=ready+player+one%2Cstripbooks-intl-ship%2C412&sr=1-1)
+- The image for Redemption was taken from [Amazon](https://www.amazon.com/Redemption-Memory-Man-Book-5-ebook/dp/B07G87BTJQ/ref=tmm_kin_swatch_0?_encoding=UTF8&qid=1559529075&sr=1-1)
+- The image for The Notebook was taken from [Amazon](https://www.amazon.com/Notebook-Nicholas-Sparks/dp/0446676098)
+- The image for The Good Fight was taken from [Amazon]( https://www.amazon.com/Good-Fight-Novel-Danielle-Steel/dp/1101884142/ref=sr_1_3?keywords=the+good+fight&qid=1559530787&s=books&sr=1-3)
+- The image for The Purpose Driven Life: What on Earth Am I Here For? was taken from [Amazon]( https://www.amazon.com/Purpose-Driven-Life-What-Earth/dp/031033750X/ref=sr_1_1?keywords=the+purpose+driven+life&qid=1559530945&s=books&sr=1-1)
+
+### Acknowledgements
+- I was inspired to create an online bookstore because the number of people reading books on their electronic devices is increasing. I also believe that people from all over the world should share their knowledge with one another through books.
+
+
 
