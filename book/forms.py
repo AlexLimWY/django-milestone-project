@@ -1,7 +1,9 @@
 from django import forms
 from .models import Book
+# from pyuploadcare.dj.forms import ImageField
 
 class PostForm(forms.ModelForm):
+    # image = ImageField(label='')
     
     class Meta:
         model = Book

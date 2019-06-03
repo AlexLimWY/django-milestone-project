@@ -1,4 +1,5 @@
 from django.db import models
+# from pyuploadcare.dj.models import ImageField
 
 # Create your models here.
 class Author(models.Model):
@@ -22,6 +23,7 @@ class Book(models.Model):
     price = models.DecimalField(default=0, max_digits=5, decimal_places=2)
     blurb = models.TextField(blank=False)
     publication_date = models.DateTimeField(auto_now_add=True)
+    # image = ImageField(blank=True, manual_crop="")
     image = models.ImageField(upload_to='images', default='images/not_found.jpg')
     
     def __str__(self):

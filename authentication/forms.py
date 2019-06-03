@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from book.models import Author, Genre, Book
+# from pyuploadcare.dj.forms import ImageField
 
 class LoginForm(forms.Form):
     username = forms.CharField(required=True)
@@ -50,6 +51,7 @@ class GenreForm(forms.ModelForm):
         fields = ['genre_name']
         
 class BookForm(forms.ModelForm):
+    # image = ImageField(label='')
     
     class Meta:
         model = Book
