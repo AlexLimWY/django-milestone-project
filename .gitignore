@@ -115,3 +115,4 @@ ENV/
 **/migrations/**
 !**/migrations
 !**/migrations/__init__.py
+sendgrid.env

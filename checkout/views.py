@@ -8,6 +8,10 @@ from django.core.mail import send_mail
 from authentication.forms import RegisterUserForm
 import authentication.views
 import stripe
+import os
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+from django.core.mail import EmailMultiAlternatives
 
 # Create your views here.
 def checkout(request):
@@ -64,15 +68,15 @@ def checkout(request):
                 return HttpResponse("Card problem")
                 
             if customer.paid:
-                # request.session['cart'] = {}
-                subject = "Your Invoice for Your Order #" + str(order.id)
-                message = "Your order has been processed and will be shipped to you shortly."
-                email_from = settings.EMAIL_HOST_USER
+                subject = "Your invoice for your order " + str(order.id)
+                message = "Your order has been processed and will be shipped to you shortly"
+                email_from = 'mannagoodies@gmail.com'
              
+                # send_to = ['al.wy.1988@gmail.com']
                 send_to = [request.user.email]
-                send_mail(subject, message, email_from, send_to)
-                return  HttpResponse("Payment Successful")
-                
+                send_mail(subject, message, email_from, send_to, fail_silently=False)
+                # return  HttpResponse("Payment Successful")
+                # print("Payment Successful")
             else:
                 return HttpResponse("Payment Failed")
             
