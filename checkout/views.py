@@ -70,7 +70,7 @@ def checkout(request):
             if customer.paid:
                 subject = "Your invoice for your order " + str(order.id)
                 message = "Your order has been processed and will be shipped to you shortly"
-                email_from = ''
+                email_from = settings.EMAIL_HOST_USER
              
                 # send_to = ['al.wy.1988@gmail.com']
                 send_to = [request.user.email]
