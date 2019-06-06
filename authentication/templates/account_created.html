@@ -13,6 +13,7 @@
             {% for m in messages %}
             <li>{{m}}</li>
             {% endfor %}
+            <a href='{% url 'login_link' %}'>Log In</a>
         </ul>
     </div>    
     {% endif %}

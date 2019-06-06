@@ -6,6 +6,7 @@ from book.models import Book
 from .models import Order, OrderLineItem
 from django.core.mail import send_mail
 from authentication.forms import RegisterUserForm
+import authentication.views
 import stripe
 
 # Create your views here.
@@ -68,7 +69,7 @@ def checkout(request):
                 message = "Your order has been processed and will be shipped to you shortly."
                 email_from = settings.EMAIL_HOST_USER
              
-                send_to = ['mannagoodies@gmail.com']
+                send_to = [request.user.email]
                 send_mail(subject, message, email_from, send_to)
                 return  HttpResponse("Payment Successful")
                 

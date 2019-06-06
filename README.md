@@ -1,4 +1,4 @@
-# Online Cookbook
+# Online Bookstore
 This is a website for user-generated content. Specifically, users or authors can upload books and the combination of all these uploads will form an online bookstore. In addition, the users can update or delete recipes on this website.
 
 ## Demo
