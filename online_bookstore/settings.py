@@ -183,10 +183,12 @@ DEFAULT_FROM_EMAIL= os.environ.get('EMAIL_ADDRESS')
 
 print(EMAIL_HOST_PASSWORD)
 
-# SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+# EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+# MAILGUN_ACCESS_KEY = '8e1d020e3c9e3139a7b83f65f1969a9a-87cdd773-1db86c62'
+# MAILGUN_SERVER_NAME = 'sandbox3191cef1f3b04e58bf6418769d835a5e.mailgun.org'
 
-# EMAIL_HOST = 'smtp.sendgrid.net'
-# EMAIL_HOST_USER = 'apikey'
-# EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
+# EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER', 'smtp.mailgun.org')
+# EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT', '587')
+# EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN', 'mannagoodies@gmail.com')
+# EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD', 'woainima86')
+
