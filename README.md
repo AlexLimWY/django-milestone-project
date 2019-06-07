@@ -15,7 +15,7 @@ The information to be presented to the user and the database relations is based 
 
 ### Features Left to Implement
 - Allowing users to upload samples/excerpts of their books.
-- The checkout message of "Payment Successful" loads in Cloud9 but does not load on the Heroku live demo site of the email settings. Hence, an email service like Mailgun or SendGrid might need to be used for emails and the checkout to work properly on the Heroku live demo site.
+- The checkout message of "Payment Successful" loads in Cloud9 but does not load on the Heroku live demo site because of the email settings. Hence, an email service like Mailgun or SendGrid might need to be used for emails and the checkout to work properly on the Heroku live demo site.
 
 ## Technologies Used
 1. HTML
