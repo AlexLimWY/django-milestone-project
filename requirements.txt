@@ -1,4 +1,4 @@
-Django==1.11
+Django==1.11.29
 Pillow==5.4.0
 PyYAML==3.13
 awscli==1.16.169
