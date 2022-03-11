@@ -1,5 +1,5 @@
 Django==1.11
-Pillow==5.4.0
+Pillow==9.0.1
 PyYAML==3.13
 awscli==1.16.169
 boto3==1.9.159
